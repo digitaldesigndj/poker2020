@@ -8,9 +8,13 @@ module.exports = {
         app: "./src/index.js",
     },
     devtool: "inline-source-map",
+    devServer: {
+        contentBase: "./dist",
+//        https: true,
+    },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "Output Management",
+            title: "Poker 2020 - Cards",
         }),
         new PrettierPlugin({
             printWidth: 80, // Specify the length of line that the printer will wrap on.
