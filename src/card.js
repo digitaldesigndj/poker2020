@@ -1,7 +1,9 @@
-const one_card = (cardInfo) => {
-    const element = document.createElement("div")
-    const { style } = element
-    element.innerHTML = cardInfo
+import $ from "jquery"
+
+const $one_card = (cardInfo) => {
+    const $element = $("<div>")
+    const { style } = $element[0]
+    $element.text(cardInfo)
     style.border = "1px solid black"
     style.borderRadius = "1rem"
     style.padding = "2rem 1rem"
@@ -9,6 +11,6 @@ const one_card = (cardInfo) => {
     style.background = "#FDFDFF"
     style.float = "left"
     style.fontSize = "1rem"
-    return element
+    return $element
 }
-export default one_card
+export default $one_card
