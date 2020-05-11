@@ -1,60 +1,47 @@
-import JQuery from "jquery"
+import $ from "jquery"
 
 console.log("hello console")
 
-console.log(JQuery)
+console.log($)
 
-function component() {
-    const element = document.createElement("div")
-    element.innerHTML = ["Hello", "webpack", " this is a website!"].join(" ")
-    return element
-}
+import one_card from "./card.js"
 
-function button(id) {
-    const element = document.createElement("button")
-    element.id = id
-    element.innerHTML = "get deck & 5 cards"
-    return element
-}
+const component = () =>
+    $("<div>").html(["Hello", "webpack", " this is a website!"].join(" "))
 
-const one_card = (cardInfo) => {
-    const element = document.createElement("span")
-    element.innerHTML = cardInfo
-    return element
-}
+const $body = $("body")
+$body.append(component)
 
-document.body.appendChild(component())
+// const messageBox = (message) => {
+//     const container = document.createElement("div")
+//     const p = document.createElement("p")
+//     container.className = "message-box"
+//     p.innerHTML = message
+//     container.appendChild(p)
+//     return container
+// }
 
+const button = (id) => $("<button>").attr("id", id).text("get deck & 5 cards")
 const DeckButton = button("deal-button")
 const onDeckButtonClick = async function () {
-    console.log("BUTTON")
     const deck_response = await fetch("http://localhost:3000/deck")
     if (deck_response.redirected === true) {
-        console.log(deck_response.url)
+        //         console.log(deck_response.url)
         const response = await fetch(deck_response.url + "/cards/5")
-        console.log(response)
+        //         console.log(response)
         const cards = await response.json()
-        console.log(cards)
-        DeckButton.removeEventListener("click", onDeckButtonClick)
+        //         console.log(cards)
+        DeckButton.off("click", onDeckButtonClick)
         DeckButton.remove()
         cards.forEach((card) => {
-            document.body.appendChild(one_card(card))
+            $body.append(one_card(card))
         })
     } else {
         return "error"
     }
 }
-DeckButton.addEventListener("click", onDeckButtonClick)
+DeckButton.on("click", onDeckButtonClick)
 
-document.body.appendChild(DeckButton)
+$body.append(DeckButton)
 
-const messageBox = (message) => {
-    const container = document.createElement("div")
-    const p = document.createElement("p")
-    container.className = "message-box"
-    p.innerHTML = message
-    container.appendChild(p)
-    return container
-}
-
-document.body.appendChild(messageBox("This is the message"))
+// document.body.appendChild(messageBox("This is the message"))
