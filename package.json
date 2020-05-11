@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-        "pretty": "prettier --write --tab-width 4 *.js",
+        "pretty": "prettier --write --tab-width 4 *.js src/*.js",
         "watch": "webpack --watch",
       "build": "webpack"
   },

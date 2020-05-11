@@ -1,19 +1,19 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-  module.exports = {
-  mode: 'development',
+module.exports = {
+    mode: "development",
     entry: {
-      app: './src/index.js',
+        app: "./src/index.js",
     },
-    devtool: 'inline-source-map',
-   plugins: [
-    new HtmlWebpackPlugin({
-       title: 'Output Management',
-     }),
-   ],
+    devtool: "inline-source-map",
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: "Output Management",
+        }),
+    ],
     output: {
-      filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist'),
+        filename: "[name].bundle.js",
+        path: path.resolve(__dirname, "dist"),
     },
-  };
+};
