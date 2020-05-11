@@ -1,4 +1,8 @@
+import JQuery from "jquery"
+
 console.log("hello console")
+
+console.log(JQuery)
 
 function component() {
     const element = document.createElement("div")
@@ -24,17 +28,21 @@ document.body.appendChild(component())
 const DeckButton = button("deal-button")
 const onDeckButtonClick = async function () {
     console.log("BUTTON")
-    const deck = await fetch("http://localhost:3000/deck")
-    console.log(deck.url)
-    const response = await fetch(deck.url + "/cards/5")
-    console.log(response)
-    const cards = await response.json()
-    console.log(cards)
-    DeckButton.removeEventListener("click", onDeckButtonClick)
-    DeckButton.remove()
-    cards.forEach((card) => {
-        document.body.appendChild(one_card(card))
-    })
+    const deck_response = await fetch("http://localhost:3000/deck")
+    if (deck_response.redirected === true) {
+        console.log(deck_response.url)
+        const response = await fetch(deck_response.url + "/cards/5")
+        console.log(response)
+        const cards = await response.json()
+        console.log(cards)
+        DeckButton.removeEventListener("click", onDeckButtonClick)
+        DeckButton.remove()
+        cards.forEach((card) => {
+            document.body.appendChild(one_card(card))
+        })
+    } else {
+        return "error"
+    }
 }
 DeckButton.addEventListener("click", onDeckButtonClick)
 

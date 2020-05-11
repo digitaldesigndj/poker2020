@@ -1,8 +1,8 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const PrettierPlugin = require("prettier-webpack-plugin");
+import path from "path";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import PrettierPlugin from "prettier-webpack-plugin";
 
-module.exports = {
+export default {
     mode: "development",
     entry: {
         app: "./src/index.js",
@@ -10,7 +10,7 @@ module.exports = {
     devtool: "inline-source-map",
     devServer: {
         contentBase: "./dist",
-//        https: true,
+        //        https: true,
     },
     plugins: [
         new HtmlWebpackPlugin({
